@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My First Form</string>
+    <string name="required_param">*required</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="retype_password">Retype Password</string>
+    <string name="female_gendre">Female</string>
+    <string name="male_gendre">Male</string>
+    <string name="music_hobbie">Music</string>
+    <string name="movie_hobbie">Movies</string>
+    <string name="read_hobbie">Reading</string>
+    <string name="games_hobbie">Video Games</string>
+    <string name="birth_Date">Select your birth date</string>
+    <string name="city">City of birth</string>
+    <string name="save_button">Save</string>
+    <string name="hobbies_select">Select your hobbies</string>
+    <string name="sex_select">Select your sex</string>
+    <string name="show_info">Here the entered information will be displayed</string>
+
+
+    <string-array name="ciudades">
+        <item>Bogotá</item>
+        <item>Medellín</item>
+        <item>Cali</item>
+        <item>Barranquilla</item>
+        <item>Cartagena</item>
+    </string-array>
+
+</resources>
+
+
