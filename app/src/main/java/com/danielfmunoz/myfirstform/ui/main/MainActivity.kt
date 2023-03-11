@@ -1,26 +1,36 @@
 package com.danielfmunoz.myfirstform.ui.main
 
-
+import MainViewModel
 import android.os.Bundle
-import android.widget.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.danielfmunoz.myfirstform.R
 import com.danielfmunoz.myfirstform.databinding.ActivityMainBinding
-import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(mainBinding.root)
 
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        // establecer la referencia al Context en el ViewModel
+        mainViewModel.setContext(this)
+
         mainBinding.btnGuardar.setOnClickListener {
-            validarCampos()
+            try {
+                validarCampos()
+            } catch (e: IllegalArgumentException) {
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                mainBinding.tvResultado.text = ""
+            }
         }
     }
 
@@ -30,32 +40,44 @@ class MainActivity : AppCompatActivity() {
         val password = mainBinding.etPassword.text.toString()
         val repetirPassword = mainBinding.etRepetirPassword.text.toString()
 
-        if (nombre.isEmpty() || correo.isEmpty() || password.isEmpty() || repetirPassword.isEmpty()) {
-            Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
-            mainBinding.tvResultado.text = ""
-        } else if (password != repetirPassword) {
-            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-            mainBinding.tvResultado.text = ""
-        } else {
-            val sexo = if (mainBinding.radioSexo.checkedRadioButtonId == R.id.rb_femenino) "Femenino" else "Masculino"
-            val hobbies = mutableListOf<String>()
-            val lugarNacimiento = mainBinding.spinnerLugarNacimiento.selectedItem.toString()
-            if (mainBinding.cbHobby1.isChecked) hobbies.add(mainBinding.cbHobby1.text.toString())
-            if (mainBinding.cbHobby2.isChecked) hobbies.add(mainBinding.cbHobby2.text.toString())
-            if (mainBinding.cbHobby3.isChecked) hobbies.add(mainBinding.cbHobby3.text.toString())
-            if (mainBinding.cbHobby4.isChecked) hobbies.add(mainBinding.cbHobby4.text.toString())
+        val datePicker = mainBinding.datePicker
+        val dia = datePicker.dayOfMonth
+        val mes = datePicker.month + 1
+        val ano = datePicker.year
+        val fechaNacimiento = "$dia/$mes/$ano"
 
-            var datos = "Nombre: $nombre\n"
-            datos += "Correo electrónico: $correo\n"
-            datos += "Sexo: $sexo\n"
-            if (hobbies.isNotEmpty()) {
-                datos += "Hobbies: ${hobbies.joinToString(", ")}\n"
+        if (mainViewModel.realizarValidateNulls(nombre, correo, password, repetirPassword)) {
+            if (mainViewModel.realizarValidatePass(password, repetirPassword)) {
+                Toast.makeText(this, getString(R.string.pass_no_match), Toast.LENGTH_SHORT).show()
+                mainBinding.tvResultado.text = ""
+            } else {
+                if (mainViewModel.realizarValidateEmail(correo)) {
+                    try {
+                        mainViewModel.guardarDatos(
+                            nombre,
+                            correo,
+                            password,
+                            mainBinding.radioSexo.checkedRadioButtonId,
+                            mainBinding.cbHobby1.isChecked,
+                            mainBinding.cbHobby2.isChecked,
+                            mainBinding.cbHobby3.isChecked,
+                            mainBinding.cbHobby4.isChecked,
+                            mainBinding.spinnerLugarNacimiento.selectedItem.toString(),
+                            fechaNacimiento
+                        )
+                        mainBinding.tvResultado.text = mainViewModel.obtenerDatos()
+                    } catch (e: Exception) {
+                        Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                        mainBinding.tvResultado.text = ""
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.email_valid), Toast.LENGTH_SHORT).show()
+                    mainBinding.tvResultado.text = ""
+                }
             }
-            datos += "Ciudad: $lugarNacimiento\n"
-            mainBinding.tvResultado.text = datos
+        }else{
+            Toast.makeText(this, getString(R.string.required_fields), Toast.LENGTH_SHORT).show()
+            mainBinding.tvResultado.text = ""
         }
     }
-
-
-
 }

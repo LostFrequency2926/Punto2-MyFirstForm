@@ -17,6 +17,18 @@
     <string name="hobbies_select">Selecciona tus hobbies</string>
     <string name="sex_select">Selecciona tu sexo</string>
     <string name="show_info">Aquí se mostrará la información ingresada</string>
+    <string name="required_fields">Todos los campos son obligatorios</string>
+    <string name="pass_no_match">Las contraseñas no coinciden</string>
+    <string name="email_valid">Formato de correo invalido</string>
+
+
+    <string name="nameShow">Nombre :</string>
+    <string name="dateBirthShow">Fecha Nacimiento :</string>
+    <string name="emailShow">Correo :</string>
+    <string name="gendreShow">Genero :</string>
+    <string name="hobbiesShow">hobbies :</string>
+    <string name="placeBirthShow">Ciudad :</string>
+
 
     <string-array name="ciudades">
         <item>Bogotá</item>
@@ -25,5 +37,13 @@
         <item>Barranquilla</item>
         <item>Cartagena</item>
     </string-array>
+
+    <string-array name="hobbies">
+        <item>Hobby 1</item>
+        <item>Hobby 2</item>
+        <item>Hobby 3</item>
+        <item>Hobby 4</item>
+    </string-array>
+
 
 </resources>

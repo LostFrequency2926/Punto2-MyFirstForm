@@ -19,6 +19,16 @@
     <string name="hobbies_select">Select your hobbies</string>
     <string name="sex_select">Select your sex</string>
     <string name="show_info">Here the entered information will be displayed</string>
+    <string name="required_fields">All fields are required</string>
+    <string name="pass_no_match">Passwords do not match</string>
+    <string name="email_valid">Invalid Email</string>
+
+    <string name="nameShow">Name :</string>
+    <string name="dateBirthShow">Date of Birth :</string>
+    <string name="emailShow">Email :</string>
+    <string name="gendreShow">Gendre :</string>
+    <string name="hobbiesShow">hobbies :</string>
+    <string name="placeBirthShow">City :</string>
 
 
     <string-array name="ciudades">

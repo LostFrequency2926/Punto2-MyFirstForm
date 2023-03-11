@@ -1,10 +1,10 @@
 package com.danielfmunoz.myfirstform.ui.splash
 
+import com.danielfmunoz.myfirstform.ui.main.MainActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.danielfmunoz.myfirstform.R
-import com.danielfmunoz.myfirstform.ui.main.MainActivity
 import java.util.*
 import kotlin.concurrent.timerTask
 
