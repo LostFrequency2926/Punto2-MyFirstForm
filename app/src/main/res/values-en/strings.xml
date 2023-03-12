@@ -22,6 +22,7 @@
     <string name="required_fields">All fields are required</string>
     <string name="pass_no_match">Passwords do not match</string>
     <string name="email_valid">Invalid Email</string>
+    <string name="pass_err">Password must be between 6 and 10 characters</string>
 
     <string name="nameShow">Name :</string>
     <string name="dateBirthShow">Date of Birth :</string>

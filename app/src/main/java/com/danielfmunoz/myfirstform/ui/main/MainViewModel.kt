@@ -42,12 +42,12 @@ class MainViewModel : ViewModel() {
 
         // Verificar la longitud de la contraseña
         if (password.length < 6 || password.length > 10) {
-            throw Exception("La contraseña debe tener entre 6 y 10 caracteres")
+            throw Exception(context?.getString(R.string.pass_err))
         }
 
         this.password = password
 
-        sexo = if (idRadioSexo == R.id.rb_femenino) "Femenino" else "Masculino"
+        sexo = if (idRadioSexo == R.id.rb_femenino) context?.getString(R.string.female_gendre) else context?.getString(R.string.male_gendre)
 
         if (hobby1) hobbies.add(context?.getString(R.string.music_hobbie) ?: "")
         if (hobby2) hobbies.add(context?.getString(R.string.movie_hobbie) ?: "")

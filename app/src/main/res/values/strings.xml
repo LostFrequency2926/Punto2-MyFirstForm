@@ -20,6 +20,7 @@
     <string name="required_fields">Todos los campos son obligatorios</string>
     <string name="pass_no_match">Las contraseñas no coinciden</string>
     <string name="email_valid">Formato de correo invalido</string>
+    <string name="pass_err">La contraseña debe tener entre 6 y 10 caracteres</string>
 
 
     <string name="nameShow">Nombre :</string>
