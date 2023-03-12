@@ -45,9 +45,13 @@ class MainActivity : AppCompatActivity() {
             if (mainBinding.cbHobby3.isChecked) hobbies.add(mainBinding.cbHobby3.text.toString())
             if (mainBinding.cbHobby4.isChecked) hobbies.add(mainBinding.cbHobby4.text.toString())
 
+            val datePicker = mainBinding.datePicker
+            val selectedDate = "${datePicker.dayOfMonth}/${datePicker.month + 1}/${datePicker.year}"
+
             var datos = "Nombre: $nombre\n"
             datos += "Correo electrónico: $correo\n"
             datos += "Sexo: $sexo\n"
+            datos += "Fecha de nacimiento: $selectedDate\n"
             if (hobbies.isNotEmpty()) {
                 datos += "Hobbies: ${hobbies.joinToString(", ")}\n"
             }
@@ -55,7 +59,4 @@ class MainActivity : AppCompatActivity() {
             mainBinding.tvResultado.text = datos
         }
     }
-
-
-
 }
